@@ -4,7 +4,7 @@ session_start();
 
 if( !empty($_GET['page']) && is_file('controler_'.$_GET['page'].'.php') )
 {
-	//include controller
+	include 'controler_'.$_GET['page'].'.php';
 }
 
 else
