@@ -2,9 +2,21 @@
 
 session_start();
 
-if( !empty($_GET['page']) && is_file('controler_'.$_GET['page'].'.php') )
+if( !empty($_GET['page']) )
 {
-	include 'controler_'.$_GET['page'].'.php';
+	//Security feature, removes all the HTML/script tags
+	$input = htmlspecialchars($_GET['page']);
+	$fileName = 'controler_'.$input.'.php';
+	
+	if(is_file($fileName))
+	{
+		include 'controler_'.$_GET['page'].'.php';
+	}
+	else
+	{
+		include "controler_index.php";
+	}
+	
 }
 
 else
