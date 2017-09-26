@@ -5,7 +5,15 @@
 </HEAD> 
 
 <BODY>
-TEST TEST TEST
+<?php
+
+while($do > 0)
+	{
+		echo $action."<br>";
+		$do -= 1;
+	}
+	
+?>
 </BODY>
 
 </HTML5>
