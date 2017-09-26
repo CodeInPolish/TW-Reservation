@@ -1,5 +1,11 @@
 <?php
 
+/*
+Created and edited by 
+Krasowski Marcin
+13169
+*/
+
 session_start();
 
 if( !empty($_GET['page']) )
