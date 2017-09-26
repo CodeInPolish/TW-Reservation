@@ -8,18 +8,13 @@
 	<form action=/TW-Reservation/router.php?page=Test method="POST">
 		<div>
 			<label for="Text to echo">Text :</label>
-			<input type="text" id="params" />
+			<input type="text" id="hue" name="params"/>
 		</div>
 		
 		<div class="button">
 			<button type="submit">Send</button>
 		</div>
 	</form>
-	
-	
-	<?php
-	var_dump($_POST);
-	?>
 </BODY>
 
 </HTML5>

@@ -1,12 +1,11 @@
 <?php
 	
+	require "FormView.php";
+	
 	if( !empty($_POST['params']) )
 	{
-		include "TestView.php";
-	}
-	else
-	{
-	include "FormView.php";
+		$text = $_POST['params'];
+		require "TestView.php";
 	}
 	
 ?>
