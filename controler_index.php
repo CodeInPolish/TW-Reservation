@@ -1,5 +1,5 @@
 <?php
 
-	echo "It's the Index Page!";
+	include "IndexView.php";
 
 ?>
