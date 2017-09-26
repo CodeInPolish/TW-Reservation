@@ -1,5 +1,5 @@
 <?php
 
-	echo "Bleeeeeeh";
+	include "TestView.php";
 
 ?>
