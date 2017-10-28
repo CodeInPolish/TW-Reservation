@@ -20,20 +20,22 @@ Le prix d'une place est de 15€ pour les plus de 12 ans </br>
 Le prix de l'assurance annulation est de 20€ quel que soit le nombre de voyageurs
 </div>
 
-<form action=/TW-Reservation/router.php?page=Reservation method="POST">
+<form action=/TW-Reservation/router.php?page=BeginReservation method="POST">
 		<div>
-            <select>
+            <select name="Destination">
             <?php
             $output = "";
-            foreach($destinationList as $value)
+            foreach($CurrentReservation->GetDestList() as $value)
                 {
                     $output = $output."<option>".$value;
                 }
             echo $output;
             ?>            
             </select>
-			<label for="Text to echo">Nombre de places :</label>
-			<input type="text" id="" name="params"/>
+			<label>Nombre de places :</label>
+			<input type="number" name="TravelerNumber"/>
+            <label>Assurance annulation :</label>
+            <input type="checkbox" name="Insurance"/>
 		</div>
 		
 		<div class="button">

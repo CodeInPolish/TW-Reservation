@@ -1,5 +1,6 @@
 <?php
 
+include "Model.php";
 /*
 Created and edited by 
 Krasowski Marcin
@@ -7,6 +8,8 @@ Krasowski Marcin
 */
 
 session_start();
+
+$CurrentReservation = new Reservation ();
 
 if( !empty($_GET['page']) )
 {
