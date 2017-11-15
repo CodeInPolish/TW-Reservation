@@ -28,4 +28,32 @@ class Reservation
         return $this->DestList;
     }
 }
+
+class Person
+{
+    private $FirstName = "";
+    private $LastName = "";
+    private $Age = 0;
+
+    public function SetFirstName($firstname)
+    {
+        $this->FirstName = $firstname;
+    }
+
+    public function SetLastName($lastname)
+    {
+        $this->LastName = $lastname;
+    }
+
+    public function SetAge($age)
+    {
+        $this->Age = $age;
+    }
+
+    public function GetInfo()
+    {
+        $ageString = "".$this->Age;
+        return array($this->$FirstName, $this->$LastName, $ageString);
+    }
+}
 ?>
