@@ -12,11 +12,7 @@ Krasowski Marcin
 </HEAD> 
 
 <BODY>
-<?php
-
-	echo $text;
-	
-?>
+FINITO
 </BODY>
 
 </HTML5>

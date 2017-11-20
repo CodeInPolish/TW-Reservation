@@ -20,7 +20,7 @@ Le prix d'une place est de 15€ pour les plus de 12 ans </br>
 Le prix de l'assurance annulation est de 20€ quel que soit le nombre de voyageurs
 </div>
 
-<form action=/TW-Reservation/router.php?page=BeginReservation method="POST">
+<form action=/TW-Reservation/router.php?page=BasicInfo method="POST">
 		<div>
             <select name="Destination">
             <?php
@@ -42,7 +42,7 @@ Le prix de l'assurance annulation est de 20€ quel que soit le nombre de voyage
 			<button type="submit">Passer à l'étape suivante</button>
             <button type="reset">Annuler la réservation</button>
 		</div>
-	</form>
+</form>
 
 </BODY>
 

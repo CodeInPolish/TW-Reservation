@@ -6,6 +6,7 @@ class Reservation
     private $Destination = "";
     private $Insurance = FALSE;
     private $DestList = array("Bruxelles","Paris","Monaco","Tokyo","Istanbul","Corfu");
+    private $TravelerList = [];
 
     public function SetBasics($TravelerNumber, $Destination, $Insurance)
     {
@@ -23,9 +24,30 @@ class Reservation
                 "Assurance: ".$PrintBool;
     }
 
+    public function AddTravelerInfo($traveler)
+    {
+        $this->TravelerList[] = $traveler;
+    }
+
+    public function GetTravelers()
+    {
+        return $this->TravelerList;
+    }
+
     public function GetDestList()
     {
         return $this->DestList;
+    }
+
+    public function CheckGotAllTravelersInfo()
+    {
+        /*
+        if($this->TravelerNumber > count($this->TravelerList))
+            return FALSE;
+        else
+            return TRUE;
+            */
+        return FALSE;
     }
 }
 
@@ -48,6 +70,13 @@ class Person
     public function SetAge($age)
     {
         $this->Age = $age;
+    }
+
+    public function SetAllVars($firstname, $lastname, $age)
+    {
+        $this->SetFirstName($firstname);
+        $this->SetLastName($lastname);
+        $this->SetAge($age);
     }
 
     public function GetInfo()
