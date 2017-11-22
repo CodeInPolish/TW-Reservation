@@ -6,7 +6,7 @@ class Reservation
     private $Destination = "";
     private $Insurance = FALSE;
     private $DestList = array("Bruxelles","Paris","Monaco","Tokyo","Istanbul","Corfu");
-    private $TravelerList = [];
+    private $TravelerArray = array();
 
     public function SetBasics($TravelerNumber, $Destination, $Insurance)
     {
@@ -19,19 +19,29 @@ class Reservation
     {
         $PrintBool = $this->Insurance ? "TRUE" : "FALSE";
       
-        return "Nombre de voyageurs: ".$this->TravelerNumber."<br>".
-                "Destination: ".$this->Destination."<br>".
+        return "Destination: ".$this->Destination."<br>".
+                "Nombre de voyageurs: ".$this->TravelerNumber."<br>".                
                 "Assurance: ".$PrintBool;
     }
 
     public function AddTravelerInfo($traveler)
     {
-        $this->TravelerList[] = $traveler;
+        $this->TravelerArray[] = $traveler;
     }
 
     public function GetTravelers()
     {
-        return $this->TravelerList;
+        return $this->TravelerArray;
+    }
+
+    public function CountTravelers()
+    {
+        return count($this->TravelerArray);
+    }
+
+    public function GetTravelersNumber()
+    {
+        return $this->TravelerNumber;
     }
 
     public function GetDestList()
@@ -41,13 +51,14 @@ class Reservation
 
     public function CheckGotAllTravelersInfo()
     {
-        /*
-        if($this->TravelerNumber > count($this->TravelerList))
+        if($this->TravelerNumber > $this->CountTravelers())
+        {
             return FALSE;
+        }
         else
-            return TRUE;
-            */
-        return FALSE;
+        {
+            return TRUE; 
+        }     
     }
 }
 
@@ -83,6 +94,15 @@ class Person
     {
         $ageString = "".$this->Age;
         return array($this->$FirstName, $this->$LastName, $ageString);
+    }
+
+    public function GetPrettyInfo()
+    {
+        $ageString = "".$this->Age;
+
+        return "Nom: ".$this->LastName."<br>".
+                "Prénom: ".$this->FirstName."<br>".
+                "Age: ".$ageString;
     }
 }
 ?>

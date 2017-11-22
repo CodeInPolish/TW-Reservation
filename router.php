@@ -9,8 +9,6 @@ Krasowski Marcin
 
 session_start();
 
-$CurrentReservation = new Reservation ();
-
 if( !empty($_GET['page']) )
 {
 	//Security feature, removes all the HTML/script tags

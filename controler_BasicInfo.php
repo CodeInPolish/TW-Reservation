@@ -6,15 +6,24 @@ Krasowski Marcin
 13169
 */
 
+if(!isset($CurrentReservation))
+{
+	$CurrentReservation = new Reservation ();
+}
+
 	if( !empty($_POST['Destination']) & !empty($_POST['TravelerNumber']) )
 	{
 		$TravelerNumber = $_POST['TravelerNumber'];
 		$Destination = $_POST['Destination'];
-		$Insurance = isset($_POST['Insurance']) ? TRUE : FALSE;    
+		$Insurance = isset($_POST['Insurance']) ? TRUE : FALSE; 
+		
+		$CurrentReservation = new Reservation ();
 	
-		$CurrentReservation->SetBasics($TravelerNumber,$Destination,$Insurance);
-	
-		require "AddTravelerInfoView.php";
+		$CurrentReservation->SetBasics(intval($TravelerNumber),$Destination,$Insurance);
+		
+		$_SESSION['reservation'] = serialize($CurrentReservation);
+
+		require "controler_AddTravelerInfo.php";
 	}
 	else
 	{

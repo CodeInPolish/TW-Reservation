@@ -11,8 +11,9 @@ Krasowski Marcin
 <title>ECAM AIRLINES</title>
 </HEAD> 
 
-<BODY>
-<h1>Passenger information</h1>
+<BODY> 
+
+<h1>Passenger <?php echo ($CurrentReservation->CountTravelers()+1)?> information</h1>
 <form action=/TW-Reservation/router.php?page=AddTravelerInfo method="POST">
     <label>Prénom :</label>
     <input type="text" name="Firstname"/>
@@ -27,11 +28,6 @@ Krasowski Marcin
     </div>
 </form>
 
-</br>
-</br>
-<?php
-echo count($CurrentReservation->GetTravelers());
-?>
 </BODY>
 
 </HTML5>
