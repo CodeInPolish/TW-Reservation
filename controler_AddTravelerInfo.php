@@ -20,7 +20,7 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
 if($CurrentReservation->CheckGotAllTravelersInfo())
 {
     //aller à la page récapitulative
-    require "controler_Confirmation.php";
+    require "controler_Summary.php";
 }
 else
 {
