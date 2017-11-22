@@ -60,6 +60,11 @@ class Reservation
             return TRUE; 
         }     
     }
+
+    public function CheckDestination($destination)
+    {
+        return in_array($destination, $this->DestList);
+    }
 }
 
 class Person
@@ -103,6 +108,63 @@ class Person
         return "Nom: ".$this->LastName."<br>".
                 "Prénom: ".$this->FirstName."<br>".
                 "Age: ".$ageString;
+    }
+}
+
+class ShowError
+{
+    private $TravelerNumberError = FALSE;
+    private $DestinationError = FALSE;
+
+    public function BuildErrorMessage()
+    {
+        $string = "";
+
+        if($this->TravelerNumberError)
+        {
+            $string = $string + $this->SpaceoutMessages("Veuillez entrer un nombre entre 1 et 10");
+        }
+
+        if($this->DestinationError)
+        {
+            $string = $string + $this->SpaceoutMessages("Veuillez sélectionner une destination valide");
+        }
+
+        $this->ResetErrors();
+        return $string;
+    }
+
+    private function SpaceoutMessages($message)
+    {
+        return "<br>".$message."<br>";
+    }
+
+    public function SetTravelerNumberError()
+    {
+        $this->TravelerNumberError = TRUE;
+    }
+
+    public function SetDestinationError()
+    {
+        $this->DestinationError = TRUE;
+    }
+
+    private function ResetErrors()
+    {
+        $this->DestinationError = FALSE;
+        $this->TravelerNumberError = FALSE;
+    }
+
+    public function CheckIfErrors()
+    {
+        if($this->DestinationError or $this->TravelerNumberError)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
     }
 }
 ?>

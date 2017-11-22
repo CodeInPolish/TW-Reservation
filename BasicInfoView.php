@@ -12,6 +12,13 @@ Krasowski Marcin
 </HEAD> 
 
 <BODY>
+<?php
+if(isset($error_obj))
+{
+    echo "<h2> Message(s) d'erreur: </h2>".$error_obj->BuildErrorMessage();
+}
+?>
+
 <h1>Reservation</h1>
 <div>
 Le prix d'une place est de 10€ pour les moins de 12 ans </br>
