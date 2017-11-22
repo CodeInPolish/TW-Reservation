@@ -1,5 +1,5 @@
 <?php
 $CurrentReservation = unserialize($_SESSION['reservation']);
 
-require "ConfirmationView.php";
+require "SummaryView.php";
 ?>
