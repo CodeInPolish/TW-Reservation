@@ -12,10 +12,12 @@ Krasowski Marcin
 </HEAD> 
 
 <BODY>
+
 <?php
 if(isset($error_obj))
 {
-    echo "<h2> Message(s) d'erreur: </h2>".$error_obj->BuildErrorMessage();
+    echo "<h2> Message(s) d'erreur: </h2>";
+    echo $error_obj->BuildErrorMessage();
 }
 ?>
 
@@ -47,7 +49,7 @@ Le prix de l'assurance annulation est de 20€ quel que soit le nombre de voyage
 		
 		<div class="button">
 			<button type="submit">Passer à l'étape suivante</button>
-            <button type="reset">Annuler la réservation</button>
+            <button type="submit" formaction="/TW-Reservation/router.php?page=unset">Annuler la réservation</button>
 		</div>
 </form>
 

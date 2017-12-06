@@ -23,8 +23,8 @@ Krasowski Marcin
     <input type="number" name="Age"/>
 
     <div class="button">
-        <button type="submit">Passer à l'étape suivante</button>
-        <button type="reset">Annuler la réservation</button>
+        <button type="submit">Valider passager</button>
+        <button type="submit" formaction="/TW-Reservation/router.php?page=unset">Annuler la réservation</button>
     </div>
 </form>
 

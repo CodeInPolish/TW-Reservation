@@ -11,22 +11,29 @@ Krasowski Marcin
 		$CurrentReservation = new Reservation ();
 	}
 
-	if( !empty($_POST['Destination']) & !empty($_POST['TravelerNumber']) )
+
+	if( !empty($_POST['Destination']) )
 	{
-		$TravelerNumber = intval(htmlspecialchars($_POST['TravelerNumber']));
+		$error_obj = new ShowError();
+		$TravelerNumber = 50;
+
+		if(isset($_POST['TravelerNumber']))
+		{
+			$TravelerNumber = intval(htmlspecialchars($_POST['TravelerNumber']));
+		}
+
 		$Destination = htmlspecialchars($_POST['Destination']);
 		$Insurance = isset($_POST['Insurance']) ? TRUE : FALSE; 
 		
-		$error_obj = new ShowError();
 
-		if($TravelerNumber<=0 or $TravelerNumber>10)
+		if($TravelerNumber>1 and $TravelerNumber<10)
 		{
-			$error_obj->SetTravelerNumberError();
+			$error_obj->ResetTravelerNumberError();
 		}
 
-		if(!$CurrentReservation->CheckDestination($Destination))
+		if($CurrentReservation->CheckDestination($Destination))
 		{
-			$error_obj->SetDestinationError();
+			$error_obj->ResetDestinationError();
 		}
 
 		if(!$error_obj->CheckIfErrors())
@@ -34,14 +41,24 @@ Krasowski Marcin
 			$CurrentReservation->SetBasics(intval($TravelerNumber),$Destination,$Insurance);
 			
 			$_SESSION['reservation'] = serialize($CurrentReservation);
-
-			require "controler_AddTravelerInfo.php";
 		}
 		else
 		{
-			//il faut serialize le message d'erreur. Puis le deserialize pour le lire ;)
-			require "BasicInfoView.php";
+			$_SESSION['usererror'] = serialize($error_obj);
 		}
+	}
+
+
+	if(isset($_SESSION['usererror']))
+	{
+		$error_obj = unserialize($_SESSION['usererror']);
+		unset($_SESSION['usererror']);
+
+		include "BasicInfoView.php";
+	}
+	else if(isset($_SESSION['reservation']) and !isset($_SESSION['usererror']))
+	{
+		require "controler_AddTravelerInfo.php";
 	}
 	else
 	{

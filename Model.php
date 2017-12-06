@@ -113,24 +113,23 @@ class Person
 
 class ShowError
 {
-    private $TravelerNumberError = FALSE;
-    private $DestinationError = FALSE;
+    private $TravelerNumberError = TRUE;
+    private $DestinationError = TRUE;
 
     public function BuildErrorMessage()
     {
         $string = "";
-
+        
         if($this->TravelerNumberError)
         {
-            $string = $string + $this->SpaceoutMessages("Veuillez entrer un nombre entre 1 et 10");
+            $string = $string.$this->SpaceoutMessages("Veuillez entrer un nombre entre 1 et 10");
         }
-
+        
         if($this->DestinationError)
         {
-            $string = $string + $this->SpaceoutMessages("Veuillez sélectionner une destination valide");
+            $string = $string.$this->SpaceoutMessages("Veuillez sélectionner une destination valide");
         }
-
-        $this->ResetErrors();
+        
         return $string;
     }
 
@@ -139,20 +138,20 @@ class ShowError
         return "<br>".$message."<br>";
     }
 
-    public function SetTravelerNumberError()
+    public function ResetTravelerNumberError()
     {
-        $this->TravelerNumberError = TRUE;
+        $this->TravelerNumberError = FALSE;
     }
 
-    public function SetDestinationError()
-    {
-        $this->DestinationError = TRUE;
-    }
-
-    private function ResetErrors()
+    public function ResetDestinationError()
     {
         $this->DestinationError = FALSE;
-        $this->TravelerNumberError = FALSE;
+    }
+
+    private function SetErrors()
+    {
+        $this->DestinationError = TRUE;
+        $this->TravelerNumberError = TRUE;
     }
 
     public function CheckIfErrors()
