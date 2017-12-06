@@ -17,6 +17,14 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
     $_SESSION['reservation'] = serialize($CurrentReservation);
 }
 
+if(isset($_POST['back']))
+{
+    $DeletedArray = $CurrentReservation->DeleteLastTraveler();
+    $PreviousTraveler = $DeletedArray[0];
+    $_SESSION['reservation'] = serialize($CurrentReservation);
+    unset($_POST['back']);
+}
+
 if($CurrentReservation->CheckGotAllTravelersInfo())
 {
     //aller à la page récapitulative

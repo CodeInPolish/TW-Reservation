@@ -61,6 +61,11 @@ class Reservation
         }     
     }
 
+    public function DeleteLastTraveler()
+    {
+        return array_splice($this->TravelerArray, -1);
+    }
+
     public function CheckDestination($destination)
     {
         return in_array($destination, $this->DestList);
@@ -78,14 +83,29 @@ class Person
         $this->FirstName = $firstname;
     }
 
+    public function GetFirstName()
+    {
+        return $this->FirstName;
+    }
+
     public function SetLastName($lastname)
     {
         $this->LastName = $lastname;
     }
 
+    public function GetLastName()
+    {
+        return $this->LastName;
+    }
+
     public function SetAge($age)
     {
         $this->Age = $age;
+    }
+
+    public function GetAge()
+    {
+        return $this->Age;
     }
 
     public function SetAllVars($firstname, $lastname, $age)

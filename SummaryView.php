@@ -31,6 +31,7 @@ foreach($TravalerArray as $traveler)
 
     <div class="button">
         <button type="submit">Valider</button>
+        <button type="submit" name="back" formaction="/TW-Reservation/router.php?page=AddTravelerInfo">Retour</button> 
         <button type="submit" formaction="/TW-Reservation/router.php?page=unset">Annuler la réservation</button>
     </div>
 
