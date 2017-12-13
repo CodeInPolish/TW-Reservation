@@ -6,6 +6,6 @@ Krasowski Marcin
 13169
 */
 
-	include "IndexView.php";
+include "IndexView.php";
 
 ?>

@@ -22,7 +22,7 @@ if(isset($maxAge))
     }
 }
 
-echo $CurrentReservation->GetBasics();
+echo $CurrentReservation->GetBasics(); //prints the basic informations
 
 $TravalerArray = $CurrentReservation->GetTravelers();
 
