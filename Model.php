@@ -29,6 +29,11 @@ class Reservation
         $this->TravelerArray[] = $traveler;
     }
 
+    public function AddTravelerInfoByIndex($traveler, $index)
+    {
+        $this->TravelerArray[$index] = $traveler;
+    }
+
     public function GetTravelers()
     {
         return $this->TravelerArray;

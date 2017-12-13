@@ -18,7 +18,7 @@ if(isset($DeletedArray))
 ?>
 <BODY>
 
-<h1>Passenger <?php echo ($CurrentReservation->CountTravelers()+1)?> information</h1>
+<h1>Passenger <?php echo $currentIndex+1;?> information</h1>
 <form action=/TW-Reservation/router.php?page=AddTravelerInfo method="POST">
     <label>Prénom :</label>
     <input type="text" name="Firstname" value="<?php if(isset($PreviousTraveler)){echo $PreviousTraveler->GetFirstName();}?>"/>
@@ -32,8 +32,8 @@ if(isset($DeletedArray))
         <button type="submit" name="back">Retour</button>
         <button type="submit" formaction="/TW-Reservation/router.php?page=unset">Annuler la réservation</button>
     </div>
+    
 </form>
-
 </BODY>
 
 </HTML5>

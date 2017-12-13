@@ -2,6 +2,28 @@
 
 $CurrentReservation = unserialize($_SESSION['reservation']);
 
+if(isset($_SESSION['TravelerIndex']))
+{
+    $currentIndex = unserialize($_SESSION['TravelerIndex']);
+}
+else
+{
+    $currentIndex = 0;
+}
+
+if(isset($_POST['back']))
+{
+    if($currentIndex>0)
+    {
+        $currentIndex = $currentIndex-1;
+        $_SESSION['TravelerIndex'] = serialize($currentIndex);
+    }
+    unset($_POST['back']);
+    unset($_POST['Firstname']);
+    unset($_POST['Lastname']);
+    unset($_POST['Age']);
+}
+
 if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Age']) )
 {
     
@@ -12,27 +34,32 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
     
     $Traveler->SetAllVars($Firstname, $Lastname, $Age);
 
-    $CurrentReservation->AddTravelerInfo($Traveler);
+    $CurrentReservation->AddTravelerInfoByIndex($Traveler, $currentIndex);
+
+    $currentIndex = $currentIndex + 1;
 
     $_SESSION['reservation'] = serialize($CurrentReservation);
+    $_SESSION['TravelerIndex'] = serialize($currentIndex);
 }
 
-if(isset($_POST['back']))
-{
-    $DeletedArray = $CurrentReservation->DeleteLastTraveler();
-    $PreviousTraveler = $DeletedArray[0];
-    $_SESSION['reservation'] = serialize($CurrentReservation);
-    unset($_POST['back']);
-}
-
-if($CurrentReservation->CheckGotAllTravelersInfo())
+if($CurrentReservation->GetTravelersNumber() == $currentIndex)
 {
     //aller à la page récapitulative
     require "controler_Summary.php";
 }
 else
 {
-    //remettre la page avec ajout d'infos
+    $Travelers = $CurrentReservation->GetTravelers();
+    
+    if(isset($Travelers[$currentIndex]))
+    {
+        $PreviousTraveler = $Travelers[$currentIndex];
+    }
+    else
+    {
+        unset($PreviousTraveler);
+    }
+    
     require "AddTravelerInfoView.php";
 }
 
