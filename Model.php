@@ -17,7 +17,7 @@ class Reservation
 
     public function GetBasics()
     {
-        $PrintBool = $this->Insurance ? "TRUE" : "FALSE";
+        $PrintBool = $this->Insurance ? "OUI" : "NON";
       
         return "Destination: ".$this->Destination."<br>".
                 "Nombre de voyageurs: ".$this->TravelerNumber."<br>".                

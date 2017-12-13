@@ -13,16 +13,16 @@ Krasowski Marcin
 
 <BODY>
 <?php 
+
 echo $CurrentReservation->GetBasics();
 
 $TravalerArray = $CurrentReservation->GetTravelers();
 
-echo "<br>";
+echo "<br><br>";
 
 foreach($TravalerArray as $traveler)
 {
     echo $traveler->GetPrettyInfo()."<br><br>";
-    
 }
 
 ?>
