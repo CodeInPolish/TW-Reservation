@@ -75,6 +75,11 @@ class Reservation
     {
         return in_array($destination, $this->DestList);
     }
+
+    public function CheckInsurance()
+    {
+        return $this->Insurance;
+    }
 }
 
 class Person

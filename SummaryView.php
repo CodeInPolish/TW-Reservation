@@ -27,7 +27,7 @@ foreach($TravalerArray as $traveler)
 
 ?>
 
-<form action=/TW-Reservation/router.php?page=AddTravelerInfo method="POST">
+<form action=/TW-Reservation/router.php?page=Payment method="POST">
 
     <div class="button">
         <button type="submit">Valider</button>
@@ -35,7 +35,7 @@ foreach($TravalerArray as $traveler)
         <button type="submit" formaction="/TW-Reservation/router.php?page=unset">Annuler la réservation</button>
     </div>
 
-    
+</form> 
 </BODY>
 
 </HTML5>

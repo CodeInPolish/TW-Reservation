@@ -26,7 +26,7 @@ Krasowski Marcin
 		$Insurance = isset($_POST['Insurance']) ? TRUE : FALSE; 
 		
 
-		if($TravelerNumber>1 and $TravelerNumber<10)
+		if($TravelerNumber>=1 and $TravelerNumber<=10)
 		{
 			$error_obj->ResetTravelerNumberError();
 		}
