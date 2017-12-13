@@ -11,6 +11,15 @@ else
     $currentIndex = 0;
 }
 
+if(isset($_SESSION['maxAge']))
+{
+    $maxAge = unserialize($_SESSION['maxAge']);
+}
+else
+{
+    $maxAge = 0;
+}
+
 if(isset($_POST['back']))
 {
     if($currentIndex>0)
@@ -33,6 +42,7 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
     $Age = intval(htmlspecialchars($_POST['Age']));
     
     $Traveler->SetAllVars($Firstname, $Lastname, $Age);
+    $maxAge = max($maxAge, $Age);
 
     $CurrentReservation->AddTravelerInfoByIndex($Traveler, $currentIndex);
 
@@ -40,6 +50,7 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
 
     $_SESSION['reservation'] = serialize($CurrentReservation);
     $_SESSION['TravelerIndex'] = serialize($currentIndex);
+    $_SESSION['maxAge'] = serialize($maxAge);
 }
 
 if($CurrentReservation->GetTravelersNumber() == $currentIndex)
