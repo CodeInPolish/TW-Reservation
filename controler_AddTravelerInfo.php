@@ -28,9 +28,9 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
 {
     
     $Traveler = new Person();
-    $Firstname = $_POST['Firstname'];
-    $Lastname = $_POST['Lastname'];
-    $Age = $_POST['Age'];
+    $Firstname = htmlspecialchars($_POST['Firstname']);
+    $Lastname = htmlspecialchars($_POST['Lastname']);
+    $Age = intval(htmlspecialchars($_POST['Age']));
     
     $Traveler->SetAllVars($Firstname, $Lastname, $Age);
 
