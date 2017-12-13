@@ -14,6 +14,14 @@ Krasowski Marcin
 <BODY>
 <?php 
 
+if(isset($maxAge))
+{
+    if($maxAge < 18)
+    {
+        echo "Attention! Au moins une personne doit être majeure.<br><br>";
+    }
+}
+
 echo $CurrentReservation->GetBasics();
 
 $TravalerArray = $CurrentReservation->GetTravelers();

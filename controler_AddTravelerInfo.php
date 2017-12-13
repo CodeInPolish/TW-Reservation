@@ -15,10 +15,6 @@ if(isset($_SESSION['maxAge']))
 {
     $maxAge = unserialize($_SESSION['maxAge']);
 }
-else
-{
-    $maxAge = 0;
-}
 
 if(isset($_POST['back']))
 {
@@ -42,6 +38,12 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
     $Age = intval(htmlspecialchars($_POST['Age']));
     
     $Traveler->SetAllVars($Firstname, $Lastname, $Age);
+
+    if(!isset($maxAge))
+    {
+        $maxAge = 0;
+    }
+    
     $maxAge = max($maxAge, $Age);
 
     $CurrentReservation->AddTravelerInfoByIndex($Traveler, $currentIndex);

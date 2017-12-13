@@ -19,6 +19,17 @@ if(isset($DeletedArray))
 <BODY>
 
 <h1>Passenger <?php echo $currentIndex+1;?> information</h1>
+
+<?php
+if(isset($maxAge))
+{
+    if($maxAge < 18)
+    {
+        echo "Attention! Au moins une personne doit être majeure.<br><br>";
+    }
+}
+?>
+
 <form action=/TW-Reservation/router.php?page=AddTravelerInfo method="POST">
     <label>Prénom :</label>
     <input type="text" name="Firstname" value="<?php if(isset($PreviousTraveler)){echo $PreviousTraveler->GetFirstName();}?>"/>
