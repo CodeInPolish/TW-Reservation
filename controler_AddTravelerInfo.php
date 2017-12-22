@@ -13,12 +13,6 @@ else
     $currentIndex = 0;
 }
 
-//if the maxAge is set, unserialize it's value
-if(isset($_SESSION['maxAge']))
-{
-    $maxAge = unserialize($_SESSION['maxAge']);
-}
-
 
 //if the user click on the 'back' button
 if(isset($_POST['back']))
@@ -50,14 +44,9 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
 
     //if maxAge is still not set, set it to 0
     //maxAge is set here to not display an error when there is no travelers added yet
-    if(!isset($maxAge))
-    {
-        $maxAge = 0;
-    }
 
     //taking the max between $maxAge and $Age. $maxAge is the previous max
     //$Age is the age of the currently added/modified person
-    $maxAge = max($maxAge, $Age);
 
     $CurrentReservation->AddTravelerInfoByIndex($Traveler, $currentIndex);
 
@@ -66,14 +55,35 @@ if( !empty($_POST['Firstname']) & !empty($_POST['Lastname']) & !empty($_POST['Ag
 
     $_SESSION['reservation'] = serialize($CurrentReservation);
     $_SESSION['TravelerIndex'] = serialize($currentIndex);
-    $_SESSION['maxAge'] = serialize($maxAge);
+}
+
+//Retrieving the max age of the travelers
+$travelers = $CurrentReservation->GetTravelers();
+
+if(count($travelers)>0)
+{
+    $maxAge = 0;
+    foreach($travelers as $traveler)
+    {
+        $maxAge = max($traveler->GetAge(), $maxAge);
+    }
 }
 
 //if the currentIndex is equal to the number of the travelers in the reservation =>show summary
 //otherwise, keep adding/modifying the travelers
 if($CurrentReservation->GetTravelersNumber() == $currentIndex)
 {
-    require "controler_Summary.php";
+    if($maxAge>17)
+        require "controler_Summary.php";
+    else
+    {
+        $currentIndex = $currentIndex - 1;
+        $_SESSION['TravelerIndex'] = serialize($currentIndex);
+        $Travelers = $CurrentReservation->GetTravelers();
+        $PreviousTraveler = $Travelers[$currentIndex];
+        require "AddTravelerInfoView.php";
+    }
+        
 }
 else
 {

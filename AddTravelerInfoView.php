@@ -10,12 +10,6 @@ Krasowski Marcin
 <HEAD>
 <title>ECAM AIRLINES</title>
 </HEAD> 
-<?php
-if(isset($DeletedArray))
-{
-    echo var_dump($DeletedArray);
-}
-?>
 <BODY>
 
 <h1>Passenger <?php echo $currentIndex+1;?> information</h1>
